@@ -1,0 +1,98 @@
+LIQUIBASE:
+----------
+   1) Liquibase is an open-source database-independent tool for database schema management. 
+
+   2) It provides a way to track, version, and manage database changes in a systematic and automated manner. 
+
+   3) The primary goal of Liquibase is to simplify and streamline the process of database schema evolution, making it easier to manage database changes across different environments and stages of development.
+
+Key features and purposes of Liquibase include:
+-----------------------------------------------
+
+   1)Version Control for Database Changes
+
+   2)Database Refactoring
+
+   3)Cross-Database Platform Support
+
+   4)Automation of Database Updates
+
+   5)Changelog Management
+
+   6)Integration with Build and Continuous Integration Tools
+
+LIQUIBASE LOCAL SETUP:
+---------------------
+
+   1)Install Liquibase
+     ------------------
+       * Download Liquibase from the official website (https://www.liquibase.org/download).
+
+       * Extract the downloaded archive to a location on your machine.
+
+       * Add the Liquibase executable to your system's PATH.
+
+   2)Create a Database Configuration
+      -------------------------------
+       * Create a liquibase.properties file or another supported format (XML, YAML, JSON) to configure the database connection. 
+
+       * Specify the database URL, username, password, and other relevant details.
+
+       * Example liquibase.properties:
+
+           changeLogFile:dbchangelog.xml  
+           url:  jdbc:postgresql://localhost:5432/postgres
+           username:  postgres  
+           password:  1234 
+           //classpath:  postgresql-42.2.8.jar
+           liquibaseProLicenseKey:  licensekey
+           liquibase.hub.ApiKey:  APIkey
+
+  3)Create a Changelog File
+    ------------------------
+     * Changelog files describe the changes you want to make to your database. 
+
+     * They can be written in XML, YAML, SQL, or JSON formats. 
+
+     * Create a file, for example, changelog.xml, and define the changes you want to make.
+
+     * Example changelog.xml:
+
+            <?xml version="1.0" encoding="UTF-8"?>
+
+       <databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd ">
+
+	 <changeSet author="cpt-user1" id="cpt-user-id" runOnChange="true">
+         <sqlFile path="db-scripts/UserData.sql" splitStatements="false"/>  
+         <sqlFile path="db-scripts/UserData_table_ALTER.sql" splitStatements="false"/>
+	 <sqlFile path="db-scripts/UserData-RegistrationFun.sql" splitStatements="false"/>
+	 <sqlFile path="db-scripts/UserData-SignInFun.sql" splitStatements="false"/>
+	 <sqlFile path="db-scripts/UserData-getAllFun.sql" splitStatements="false"/>
+	 <sqlFile path="db-scripts/KycDetails.sql" splitStatements="false"/>
+	 <sqlFile path="db-scripts/KycDetailsUpdateFun.sql" splitStatements="false"/>
+	 <sqlFile path="db-scripts/UserData-UpdateUserFun.sql" splitStatements="false"/>
+	 <sqlFile path="db-scripts/delete_user_Fun.sql" splitStatements="false"/>
+	</changeSet>
+        </databaseChangeLog>
+
+  4)Run Liquibase Commands
+    ----------------------
+     * Use Liquibase commands to apply, rollback, or check the status of database changes. 
+
+     * Run these commands in your terminal or command prompt.
+
+     * Example commands:
+
+           # Check the status of pending changes
+               liquibase status
+
+           # Apply changes to the database
+               liquibase update --changelog-file=dbchangelog.xml
+
+           # Rollback changes
+               liquibase rollbackCount 1

@@ -1,0 +1,32 @@
+VSCODE SETUP
+
+Download sonarqube zip file - https://www.sonarsource.com/products/sonarqube/downloads/  (community edition) 
+
+in pgadmin - create database sonarqube
+
+extract file and open sonarqube/conf/sonar and edit file
+
+to run - sonarqube/bin/windows-x86-64 - cmd
+
+run cmd - startsonar.bat start 
+
+in chrome run http://localhost:portnum 
+
+in sonarqube website username:admin , password:admin , account/my account/  name:xxx , type:usertoken , expiresin:1yr -> generate token and save token in textfile & also edit password
+
+to create project -> projects/create project/local project/name/next / select use the global setting
+
+in vscode download extention sonarlint 
+
+open sonarlint / connection mode/ connect to sonarqube / url: http://localhost:portnum / paste token / save connection 
+
+comeback to sonarqube /click + / select project 
+
+
+STS SETUP
+
+help/eclipse marketplace/sonarlint/install 
+
+rightclick on any project / sonarlint / analyze
+
+
